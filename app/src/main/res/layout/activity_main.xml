@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.MainActivity">
+
+    <LinearLayout
+        android:id="@+id/select_plane"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:text="题目类别"
+            android:textColor="@color/primary_text"
+            android:textSize="18sp" />
+
+        <com.shawnlin.numberpicker.NumberPicker
+            android:id="@+id/tpye_picker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:np_orientation="horizontal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:text="科目类别"
+            android:textColor="@color/primary_text"
+            android:textSize="18sp" />
+
+        <com.shawnlin.numberpicker.NumberPicker
+            android:id="@+id/subject_picker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:np_orientation="horizontal" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="submit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/select_plane"
+        app:layout_constraintStart_toStartOf="@+id/select_plane"
+        app:layout_constraintTop_toBottomOf="@+id/select_plane" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
