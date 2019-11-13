@@ -30,7 +30,7 @@ public class MainActivity extends BaseActivity {
     private String[] data2 = {"一", "二"};
     private CharSequence type = data[5];
     private CharSequence subject = data2[0];
-
+    private XzTipsDialog mDialog;
 
     @Override
     public boolean homeAsUpEnabled() {
@@ -71,7 +71,8 @@ public class MainActivity extends BaseActivity {
 
     @OnClick(R.id.submit)
     public void submit() {
-        XzTipsDialog mDialog = new XzTipsDialog.Builder(this)
+
+        mDialog = new XzTipsDialog.Builder(this)
                 .setContent("\n\n选择" + type.toString() + "科目" + subject.toString() + "题库\n\n")
                 .setCancelOnclickListener("重选", new XOnClickListener() {
                     @Override
@@ -85,6 +86,7 @@ public class MainActivity extends BaseActivity {
                         startActivity(new Intent(MainActivity.this, ExerciseActivity.class)
                                 .putExtra("type", type.toString())
                                 .putExtra("subject", subject.toString()));
+                        mDialog.dismiss();
                     }
                 })
                 .create();

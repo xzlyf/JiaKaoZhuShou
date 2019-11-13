@@ -11,13 +11,18 @@ import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
+import com.google.gson.Gson;
 import com.orhanobut.logger.Logger;
 import com.squareup.okhttp.Request;
 import com.xz.jkzs.R;
 import com.xz.jkzs.adapter.ExerciseAdapter;
 import com.xz.jkzs.base.BaseActivity;
 import com.xz.jkzs.constant.Local;
+import com.xz.jkzs.entity.TikuEntity;
 import com.xz.jkzs.network.OkHttpClientManager;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -52,18 +57,18 @@ public class ExerciseActivity extends BaseActivity {
         subject = intent.getStringExtra("subject");
         initRecycler();
 
-        //net_get();
+        net_get();
     }
 
     private void initRecycler() {
         adapter = new ExerciseAdapter(this);
-        List list = new ArrayList();
-        list.add("a");
-        list.add("a");
-        list.add("a");
-        list.add("a");
-        list.add("a");
-        adapter.refresh(list);
+//        List list = new ArrayList();
+//        list.add("a");
+//        list.add("a");
+//        list.add("a");
+//        list.add("a");
+//        list.add("a");
+//        adapter.refresh(list);
         LinearLayoutManager manager = new LinearLayoutManager(this);
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recycler.setLayoutManager(manager);
@@ -97,6 +102,7 @@ public class ExerciseActivity extends BaseActivity {
             @Override
             public void onError(Request request, Exception e) {
                 Logger.w(request + "error:" + e.getMessage());
+                sToast("当前网络异常");
                 disLoading();
             }
 
@@ -104,9 +110,45 @@ public class ExerciseActivity extends BaseActivity {
             public void onResponse(String response) {
                 Logger.w("题库" + response);
                 disLoading();
+                try {
+                    //第一层
+                    JSONObject obj = new JSONObject(response);
+                    if (obj.getString("code").equals("10000")) {
+                        //第二层
+                        JSONObject obj2 = obj.getJSONObject("result");
+                        if (obj2.getString("status").equals("0")) {
+                            //第三层
+                            JSONObject obj3 = obj2.getJSONObject("result");
+                            Gson gson = new Gson();
+                            showList(gson.fromJson(obj3.toString(), TikuEntity.class));
+
+                        } else {
+                            sToast(obj2.getString("msg"));
+                        }
+                    } else {
+                        sToast(obj.getString("msg"));
+                    }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    sToast("服务器异常");
+                }
+
+
             }
 
         }, params, true);
+
+    }
+
+    /**
+     * 展示数据
+     *
+     * @param entity
+     */
+    private void showList(TikuEntity entity) {
+        adapter.refresh(entity.getList());
 
     }
 
