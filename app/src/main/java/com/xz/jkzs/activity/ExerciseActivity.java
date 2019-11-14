@@ -91,8 +91,8 @@ public class ExerciseActivity extends BaseActivity {
         params.put("type", type);
         if (subject.equals("一")) {
             params.put("subject", 1);
-        } else if (subject.equals("二")) {
-            params.put("subject", 2);
+        } else if (subject.equals("四")) {
+            params.put("subject", 4);
         }
         params.put("pagesize", 10);
         params.put("sort", "rand");

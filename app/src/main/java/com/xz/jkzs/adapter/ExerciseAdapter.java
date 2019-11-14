@@ -46,10 +46,20 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHo
             Glide.with(mContext).load(mList.get(position).getPic()).into(holder.pic);
 
         }
-        holder.option1.setText(mList.get(position).getOption1());
-        holder.option2.setText(mList.get(position).getOption2());
-        holder.option3.setText(mList.get(position).getOption3());
-        holder.option4.setText(mList.get(position).getOption4());
+
+        if (mList.get(position).getOption1().equals("")) {
+            holder.option1.setText("对");
+            holder.option2.setText("错");
+            holder.option3.setVisibility(View.GONE);
+            holder.option4.setVisibility(View.GONE);
+
+        } else {
+
+            holder.option1.setText(mList.get(position).getOption1());
+            holder.option2.setText(mList.get(position).getOption2());
+            holder.option3.setText(mList.get(position).getOption3());
+            holder.option4.setText(mList.get(position).getOption4());
+        }
         holder.tips.setText(mList.get(position).getExplain());
         holder.question.setText(mList.get(position).getQuestion());
     }

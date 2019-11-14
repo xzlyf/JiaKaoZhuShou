@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="20sp"
-    android:background="@drawable/bg_yuanjiao"
     android:orientation="vertical">
 
 
@@ -20,6 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:textColor="@color/black"
+        android:text="题目------"
         android:textSize="18sp" />
 
     <LinearLayout

@@ -27,7 +27,7 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.submit)
     Button submit;
     private String[] data = {"A1", "A3", "B1", "A2", "B2", "C1", "C2", "C3", "D", "E", "F"};
-    private String[] data2 = {"一", "二"};
+    private String[] data2 = {"一", "四"};
     private CharSequence type = data[5];
     private CharSequence subject = data2[0];
     private XzTipsDialog mDialog;
