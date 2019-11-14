@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
 import com.xz.jkzs.R;
 import com.xz.jkzs.entity.TikuListEntity;
 
@@ -41,9 +41,10 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-//        Glide.with(mContext).load(mList.get(position).getPic()).into(holder.pic);
         if (!mList.get(position).getPic().equals("")) {
-            Picasso.get().load(mList.get(position).getPic()).into(holder.pic);
+//            Picasso.get().load(mList.get(position).getPic()).into(holder.pic);
+            Glide.with(mContext).load(mList.get(position).getPic()).into(holder.pic);
+
         }
         holder.option1.setText(mList.get(position).getOption1());
         holder.option2.setText(mList.get(position).getOption2());
